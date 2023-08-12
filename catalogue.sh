@@ -16,10 +16,10 @@ useradd roboshop
 echo -e  "/e[31m "<<<<<<Create application directory>>>>>>>/e[0m"
 mkdir /app
 
-echo -e "/e[31m "/e[31m "<<<<<<<<Download application content>>>>>>>>>/e[0m"
+echo -e "/e[31m "<<<<<<<<Download application content>>>>>>>>>/e[0m"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
 
-echo -e "/e[31m "<<<<<<<<<<<extract application content>>>>>>>>>>>>/e[0m"
+echo -e "/e[31m "<<<<<<<<<<<Extract application content>>>>>>>>>>>>/e[0m"
 cd /app
 unzip /tmp/catalogue.zip
 cd /app
@@ -30,7 +30,7 @@ npm install
 echo -e "/e[31m "<<<<<<<<Install mongodb client>>>>>>>>>>/e[0m"
 yum install mongodb-org-shell -y
 
-echo -e "/e[31m <<<<<<<Load catalogue schemaa>>>>>>/e[0m"
+echo -e "/e[31m "<<<<<<Load catalogue schemaa>>>>>>/e[0m"
 mongo --host mongodb.chandana24.online </app/schema/catalogue.js
 
 echo -e "/e[31m  "<<<<<<<Start Catalogue service>>>>>>/e[0m"
