@@ -30,13 +30,13 @@ cd /app &>>/tmp/roboshop.log
 echo -e "\e[36m<<<<<<<<<<Download nodejs dependencies>>>>>\e[0m"
 npm install &>>/tmp/roboshop.log
 
-echo -e "\e[36m<<<<<<<<Install mongodb client>>>>>>>>>>\e[0m"
+echo -e "\e[36m<<<<<<<<Install mongodb client>>>>>>>>>>\e[0m" | tee -a /tmp/roboshop.log
 yum install mongodb-org-shell -y &>>/tmp/roboshop.log
 
-echo -e "\e[36m<<<<<<Load catalogue schemaa>>>>>>\e[0m"
+echo -e "\e[36m<<<<<<Load catalogue schemaa>>>>>>\e[0m" | tee -a /tmp/roboshop.log
 mongo --host mongodb.chandana24.online </app/schema/catalogue.js &>>/tmp/roboshop.log
 
-echo -e "\e[36m<<<<<<<Start Catalogue service>>>>>>\e[0m"
+echo -e "\e[36m<<<<<<<Start Catalogue service>>>>>>\e[0m" | tee -a /tmp/roboshop.log
 systemctl daemon-reload &>>/tmp/roboshop.log
 systemctl enable catalogue &>>/tmp/roboshop.log
 systemctl restart catalogue &>>/tmp/roboshop.log
