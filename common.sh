@@ -1,4 +1,5 @@
 func_apppre() {
+    log=/tmp/roboshop.log
   echo -e "\e[35m<<<<<<<<<<Create Application User>>>>>>>>>\e[0m"
     useradd roboshop &>>log
 
@@ -15,6 +16,7 @@ func_apppre() {
 }
 
 func_systemd() {
+   log=/tmp/roboshop.log
   echo -e "\e[36m<<<<<<<<<<Start ${component} Service>>>>>>>>>\e[0m"
     systemctl daemon-reload &>>log
     systemctl enable ${component} &>>log
@@ -51,25 +53,26 @@ func_nodejs() {
 
 func_java() {
 
+   log=/tmp/roboshop.log
   echo -e "\e[36m<<<<<<<<<<Create ${component} Service>>>>>>>>>\e[0m"
-  cp ${component}.service /etc/systemd/system/${component}.service
+  cp ${component}.service /etc/systemd/system/${component}.service &>>log
 
   echo -e "\e[36m<<<<<<<<<<Install Maven>>>>>>>>>\e[0m"
-  yum install maven -y
+  yum install maven -y &>>log
 
   func_apppre
 
   echo -e "\e[36m<<<<<<<<<<Bulid ${component} Service>>>>>>>>>\e[0m"
-  mvn clean package
-  mv target/${component}-1.0.jar ${component}.jar
+  mvn clean package &>>log
+  mv target/${component}-1.0.jar ${component}.jar &>>log
 
   echo -e "\e[36m<<<<<<<<<<Install MySql Client>>>>>>>>>\e[0m"
-  yum install mysql -y
+  yum install mysql -y &>>log
   # shellcheck disable=SC2261
   # shellcheck disable=SC2261
 
   echo -e "\e[36m<<<<<<<<Load Schema >>>>>>>>>\e[0m"
-  mysql -h mysql.chandana24.online -uroot -pRoboShop@1 < /app/schema/ ${component}.sql
+  mysql -h mysql.chandana24.online -uroot -pRoboShop@1 < /app/schema/ ${component}.sql &>>log
 
   func_systemd
 }
