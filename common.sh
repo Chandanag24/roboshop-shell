@@ -1,3 +1,5 @@
+log=/tmp/roboshop.log
+
 func_apppre() {
     log=/tmp/roboshop.log
   echo -e "\e[35m<<<<<<<<<<Create Application User>>>>>>>>>\e[0m"
@@ -10,9 +12,9 @@ func_apppre() {
     curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip  &>>log
 
     echo -e "\e[34m<<<<<<<<<<Extract App Content>>>>>>>>>\e[0m"
-    cd /app &>>log
+    cd /app
     unzip /tmp/${component}.zip &>>log
-    cd /app &>>log
+    cd /app
 }
 
 func_systemd() {
@@ -53,7 +55,6 @@ func_nodejs() {
 
 func_java() {
 
-   log=/tmp/roboshop.log
   echo -e "\e[36m<<<<<<<<<<Create ${component} Service>>>>>>>>>\e[0m"
   cp ${component}.service /etc/systemd/system/${component}.service &>>log
 
