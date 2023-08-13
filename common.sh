@@ -1,5 +1,4 @@
 log=/tmp/roboshop.log
-
 func_apppre() {
     log=/tmp/roboshop.log
   echo -e "\e[35m<<<<<<<<<<Create Application User>>>>>>>>>\e[0m"
@@ -16,7 +15,6 @@ func_apppre() {
     unzip /tmp/${component}.zip &>>log
     cd /app
 }
-
 func_systemd() {
    log=/tmp/roboshop.log
   echo -e "\e[36m<<<<<<<<<<Start ${component} Service>>>>>>>>>\e[0m"
