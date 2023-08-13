@@ -74,7 +74,7 @@ func_python() {
 
   func_apppre
 
-  echo -e "\e[36m<<<<<<<<Bulid ${component} Service>>>>>>>>>\e[0m"
+  echo -e "\e[36m<<<<<<<<Bulid Payment Service>>>>>>>>>\e[0m"
   pip3.6 install -r requirements.txt  &>>log
 
   func_systemd
