@@ -38,8 +38,6 @@ func_schema_setup() {
  if  [ "${schema_type}" == "mysql" ]; then
    echo -e "\e[36m<<<<<<<<<<Install MySql Client>>>>>>>>>\e[0m"
      yum install mysql -y &>>log
-     # shellcheck disable=SC2261
-     # shellcheck disable=SC2261
 
      echo -e "\e[36m<<<<<<<<Load Schema >>>>>>>>>\e[0m"
      mysql -h mysql.chandana24.online -uroot -pRoboShop@1 < /app/schema/ ${component}.sql &>>log
