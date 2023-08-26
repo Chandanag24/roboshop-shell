@@ -1,10 +1,10 @@
 log=/tmp/roboshop.log
 
 func_apppre() {
-  echo -e "\e[35m<<<<<<<<<<Create User Service>>>>>>>>>\e[0m"
+  echo -e "\e[35m<<<<<<<<<<Create ${component}  Service>>>>>>>>>\e[0m"
   cp ${component}.service /etc/systemd/system/${component}.service &>>log
 
-  echo -e "\e[35m<<<<<<<<<<Create Application User>>>>>>>>>\e[0m"
+  echo -e "\e[35m<<<<<<<<<<Create Application ${component}>>>>>>>>>\e[0m"
   useradd roboshop &>>log
 
   echo -e "\e[36m<<<<<<<<<<Create App Dir>>>>>>>>>\e[0m"
