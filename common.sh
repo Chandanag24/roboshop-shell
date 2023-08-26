@@ -24,7 +24,7 @@ func_apppre() {
   echo -e "\e[36m<<<<<<<<<<Create App Dir>>>>>>>>>\e[0m"
   id /app &>>${log}
   if [ $? -ne 0 ]; then
-    mkdir /app &>>{log}
+    mkdir /app &>>${log}
   fi
   func_exit_status
 
