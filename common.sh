@@ -15,11 +15,17 @@ func_apppre() {
   func_exit_status
 
   echo -e "\e[35m<<<<<<<<<<Create Application ${component}>>>>>>>>>\e[0m"
-  useradd roboshop &>>log
+  id roboshop &>>${log}
+  if [ $? -ne 0 ]; then
+    useradd roboshop &>>${log}
+  fi
   func_exit_status
 
   echo -e "\e[36m<<<<<<<<<<Create App Dir>>>>>>>>>\e[0m"
-  mkdir /app &>>log
+  id app &>>${log}
+  if [ $? -ne 0 ]; then
+    mkdir /app &>>{log}
+  fi
   func_exit_status
 
   echo -e "\e[36m<<<<<<<<<<Download App Content>>>>>>>>>\e[0m"
@@ -29,6 +35,7 @@ func_apppre() {
   echo -e "\e[34m<<<<<<<<<<Extract App Content>>>>>>>>>\e[0m"
   cd /app
   unzip /tmp/${component}.zip &>>log
+  cd /app
   func_exit_status
 }
 func_systemd() {
