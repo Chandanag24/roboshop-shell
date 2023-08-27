@@ -99,10 +99,15 @@ func_java() {
 func_python() {
   echo -e "\e[36m<<<<<<<<Install Python >>>>>>>>>\e[0m"
   yum install python36 gcc python3-devel -y  &>>${log}
+  func_exit_status
+
   func_apppre
+
+  sed -i "s/rabbitmq_app_password/${rabbitmq_app_password}/" /etc/systemd/system/${component}.service
 
   echo -e "\e[36m<<<<<<<<Bulid Payment Service>>>>>>>>>\e[0m"
   pip3.6 install -r requirements.txt  &>>${log}
+  func_exit_status
   func_systemd
 }
 
